@@ -1,0 +1,32 @@
+# this workflow says, everytime I push to github repo, I would like to check out code inside github repo 
+# giving workflow name of Testing
+name: Testing
+# specify on key to mean when should this workflow run. Here is set on push
+on: push
+
+# every workflow consists of jobs
+# What tasks should happen anytime that code should push to repo
+jobs:
+  # defined name for job called test project, it can be any name you want 
+  test_project:
+    # need specify 2 things for what happens on a job
+    # One thing need to specify is what sort of machine is it going to run on
+    # github has own virtual machines(VMs)
+    # I would like to run this job on one of those VMs
+    # there are vms for various diff operating systems
+    runs-on: ubuntu-latest
+    # for jobs specify what steps, should happen where I can now specify what actions should happen when someone tries to test a project when I try and run job
+    steps:
+    # this is a github action written by GitHub called actions/checkout
+    # it checks out code in github repo and allow me to run programs that operate on that code
+    # you can also run your own github actions as well
+    - uses: actions/checkout@v2
+    # This is a description fo me to know what's going on in step
+    - name: Run Django unit tests
+      # this is what I would like to run
+      # first install django
+      # can install other things
+      # then run python3 manage.py test(just like in terminal)
+      run: |
+        pip3 install --user django
+        python3 manage.py test
