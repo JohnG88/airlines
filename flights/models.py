@@ -18,7 +18,7 @@ class Flight(models.Model):
         return f"{self.id}: {self.origin} to {self.destination}"
     # changing and to or for failure, for yaml
     def is_valid_flight(self):
-        return self.origin != self.destination and self.duration > 0
+        return self.origin != self.destination or self.duration > 0
 
 class Passenger(models.Model):
     first = models.CharField(max_length=64)
